@@ -16,6 +16,7 @@
   <ItemGroup>
     <Folder Include="Aplication\CommandsDTOS\" />
     <Folder Include="Aplication\Handlers\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
