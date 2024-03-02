@@ -30,7 +30,7 @@ namespace Dominio.Models.User
 
             // Puedes agregar más validaciones según tus requisitos
 
-            Dni = dni;
+            Dni = dni; //TO-DO Cambiar por NIF, un usuario podra ser español DNI, extranjero NIE o incluso una empresa
             Name = name;
             Address = address;
             Phone = phone;
