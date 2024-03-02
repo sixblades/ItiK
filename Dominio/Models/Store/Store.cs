@@ -1,23 +1,32 @@
 ﻿using Dominio.Models.Shared;
-using Dominio.Models.Store.ValueObjects;
+
 
 namespace Dominio.Models.Store
 {
     public class Store
     {
         public Guid Id { get; private set; }
-        public Cif Cif { get; set; }
-        public Name StoreName { get; set; }
-        public Address StoreAddress { get; set; }
-        public PhoneNumber StorePhone { get; set; }
+        public FiscalTypeEnum FiscalTypeEnum { get; private set; }
+        public FiscalNumber FiscalNumber { get; private set; }
+        public Name StoreName { get; private set; }
+        public Address StoreAddress { get; private set; }
+        public PhoneNumber StorePhone { get; private set; }
 
-        public Store(Cif cif, Name storeName, Address storeAddress, PhoneNumber storePhone)
+        private Store(FiscalTypeEnum fiscalTypeEnum, FiscalNumber fiscalNumber, Name storeName, Address storeAddress, PhoneNumber storePhone)
         {
             Id = Guid.NewGuid();
-            Cif = cif;
+            FiscalTypeEnum = fiscalTypeEnum;
+            FiscalNumber = fiscalNumber;
             StoreName = storeName;
             StoreAddress = storeAddress;
             StorePhone = storePhone;
         }
+
+        public Store Create(FiscalTypeEnum fiscalTypeEnum, FiscalNumber fiscalNumber, Name storeName, Address storeAddress, PhoneNumber storePhone)
+        {
+            return new Store(fiscalTypeEnum, fiscalNumber, storeName, storeAddress, storePhone);
+        }
+
+
     }
 }
