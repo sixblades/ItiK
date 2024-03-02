@@ -1,6 +1,7 @@
-﻿using Infraestructure;
+﻿using FluentValidation.AspNetCore;
+using Infraestructure;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace Aplication
 {
@@ -14,11 +15,15 @@ namespace Aplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<ApplicationDBContext>(options => 
+            services.AddDbContext<ApplicationDBContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
-            
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+
+            services.AddMediatR(); // TODO: documentarte sobre la libreria MediatR
+
+            services.AddFluentValidationAutoValidation(); // TODO : documentarte sobre la libreria Fluent
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,6 +45,6 @@ namespace Aplication
                 endpoints.MapControllers();
             });
         }
-     
+
     }
 }
