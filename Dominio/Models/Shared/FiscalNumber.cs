@@ -1,11 +1,11 @@
-﻿namespace Dominio.Models.User.ValueObjects
+﻿namespace Dominio.Models.Shared
 {
-    public class Dni
+    public class FiscalNumber
     {
         public string Number { get; }
-
+        // TODO : Cambiar las validaciones para que valide los tres tipos
         // Constructor para la creación de un nuevo objeto Dni
-        public Dni(string number)
+        public FiscalNumber(string number)
         {
             if (!DniValidate(number))
             {
@@ -31,7 +31,7 @@
             }
 
             // Verificar que el último caracter es una letra
-            char letra = Char.ToUpper(Number[8]);
+            char letra = char.ToUpper(Number[8]);
             if (!IsLetter(letra))
             {
                 return false;
