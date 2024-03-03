@@ -1,13 +1,13 @@
-﻿namespace Dominio.Models.Shared
+﻿namespace Domain.Models.Shared
 {
     public class Name
     {
         private const int MaxLength = 40;
 
-        public string Value { get; }
+        public string Value { get; private set; }
 
         // Constructor para la creación de un nuevo objeto Nombre
-        public Name(string value)
+        private Name(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -21,6 +21,13 @@
 
             Value = value;
         }
+
+        public static Name Create(string name)
+        {
+            return new Name(name);
+        }
+
+
     }
 
 }

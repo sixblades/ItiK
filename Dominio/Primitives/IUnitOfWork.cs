@@ -1,6 +1,6 @@
-﻿namespace Dominio.Primitives
+﻿namespace Domain.Primitives
 {
-    internal interface IUnitOfWork
+    public interface IUnitOfWork
     {
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

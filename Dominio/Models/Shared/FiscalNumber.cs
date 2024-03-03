@@ -1,11 +1,12 @@
-﻿namespace Dominio.Models.Shared
+﻿namespace Domain.Models.Shared
 {
     public class FiscalNumber
     {
-        public string Number { get; }
+        public string Number { get; private set; }
+
         // TODO : Cambiar las validaciones para que valide los tres tipos
         // Constructor para la creación de un nuevo objeto Dni
-        public FiscalNumber(string number)
+        private FiscalNumber(string number)
         {
             if (!DniValidate(number))
             {
@@ -13,7 +14,9 @@
             }
 
             Number = number;
+
         }
+
 
         // Método para validar que el DNI es correcto según las reglas en España
         private bool DniValidate(string Number)
@@ -63,6 +66,11 @@
             char[] letters = "TRWAGMYFPDXBNJZSQVHLCKE".ToCharArray();
 
             return letters[Number];
+        }
+
+        public static FiscalNumber Create(string fiscalNumber)
+        {
+            return new FiscalNumber(fiscalNumber);
         }
     }
 

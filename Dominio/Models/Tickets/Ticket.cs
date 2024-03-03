@@ -1,14 +1,21 @@
-﻿using Dominio.Models.Shared;
+﻿using Domain.Models.Tickets.ValueObjects;
+using Domain.Primitives;
 
-namespace Dominio.Models.Tickets
+namespace Domain.Models.Tickets
 {
-    public class Ticket
+    public class Ticket : AggregateRoot
     {
         public Guid Id { get; }
         public TicketNumber TicketNumber { get; private set; }
         public Guid CustomerId { get; private set; }
         public Guid UserId { get; private set; }
         public List<TicketItem> Items { get; private set; }
+
+#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
+#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
+        public Ticket() { }
+#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
+#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
 
         // Constructor para la creación de un nuevo objeto Ticket
         private Ticket(TicketNumber ticketNumber, Guid customerId, Guid userId)

@@ -1,12 +1,11 @@
-﻿namespace Dominio.Models.Tickets.ValueObjects
+﻿namespace Domain.Models.Tickets.ValueObjects
 {
     using System;
 
     public class Description
     {
         private const int MaxLength = 140;
-
-        public string Value { get; }
+        public string Value { get; set; }
 
         // Constructor para la creación de un nuevo objeto Description
         public Description(string value)

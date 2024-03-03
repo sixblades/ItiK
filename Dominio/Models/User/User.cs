@@ -1,18 +1,21 @@
-﻿using Dominio.Models.Shared;
-using Dominio.Models.Tickets;
-using Dominio.Primitives;
+﻿using Domain.Models.Shared;
+using Domain.Models.Tickets;
+using Domain.Primitives;
 
-namespace Dominio.Models.User
+namespace Domain.Models.User
 {
     public class User : AggregateRoot
     {
-        public Guid Id { get; }
+        public Guid Id { get; private set; }
         public FiscalTypeEnum FiscalType { get; private set; }
         public FiscalNumber FiscalNumber { get; private set; }
         public Name Name { get; private set; }
         public Address Address { get; private set; }
         public PhoneNumber Phone { get; private set; }
-        public List<Ticket> Tickets { get; private set; }
+        public List<Ticket>? Tickets { get; private set; }
+
+
+        public User() { }
 
         // Constructor para la creación de un nuevo usuario
         private User(FiscalTypeEnum fiscalType, FiscalNumber fiscalNumber, Name name, Address address, PhoneNumber phone)
@@ -21,15 +24,11 @@ namespace Dominio.Models.User
             Id = Guid.NewGuid();
 
             // Validaciones adicionales según tus requisitos
-
-
             if (address == null)
             {
                 throw new ArgumentException("La dirección no puede estar vacía o ser nula.", nameof(address));
             }
-
-            // Puedes agregar más validaciones según tus requisitos
-
+            Id = Guid.NewGuid();
             FiscalType = fiscalType;
             FiscalNumber = fiscalNumber;
             Name = name;
@@ -38,10 +37,9 @@ namespace Dominio.Models.User
             Tickets = new List<Ticket>();
         }
 
-        public User Create(FiscalTypeEnum fiscalType, FiscalNumber fiscalNumber, Name name, Address address, PhoneNumber phone, Ticket ticket)
+        public static User Create(FiscalTypeEnum fiscalType, FiscalNumber fiscalNumber, Name name, Address address, PhoneNumber phone)
         {
             var NewUser = new User(fiscalType, fiscalNumber, name, address, phone);
-            NewUser.AddTicket(ticket);
             return NewUser;
         }
 
@@ -49,6 +47,7 @@ namespace Dominio.Models.User
         public void AddTicket(Ticket ticket)
         {
             Tickets.Add(ticket);
+
         }
     }
 }

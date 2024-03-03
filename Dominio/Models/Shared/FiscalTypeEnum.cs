@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Dominio.Models.Shared
+namespace Domain.Models.Shared
 {
     public enum FiscalTypeEnum
     {

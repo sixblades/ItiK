@@ -1,13 +1,13 @@
-﻿namespace Dominio.Models.Shared
+﻿namespace Domain.Models.Tickets.ValueObjects
 {
     public class TicketNumber
     {
         private const int MaxLength = 5;
 
-        public string Value { get; }
+        public string Value { get; set; }
 
         // Constructor para la creación de un nuevo objeto Nombre
-        private TicketNumber(string value)
+        public TicketNumber(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -20,10 +20,6 @@
             }
 
             Value = value;
-        }
-        public TicketNumber Create(String value)
-        {
-            return new TicketNumber(value);
         }
     }
 

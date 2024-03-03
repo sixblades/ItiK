@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio.Primitives
+namespace Domain.Primitives
 {
     public abstract class AggregateRoot
     {
@@ -14,7 +14,7 @@ namespace Dominio.Primitives
         {
             _domainEvents.Add(domainEvent);
         }
-        
+
     }
 
 
