@@ -1,21 +1,21 @@
 ﻿using Domain.Models.Shared;
-using Domain.Models.User;
+using Domain.Models.Store;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class StoreConfiguration : IEntityTypeConfiguration<Store>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<Store> builder)
         {
-            builder.ToTable("User")
+            builder.ToTable("Store")
                 .HasKey(s => s.Id);
 
             builder.Property(s => s.Id)
                 .HasConversion<string>();
 
-            builder.Property(e => e.FiscalType)
+            builder.Property(e => e.FiscalTypeEnum)
                .HasConversion(
                 v => v.ToString(),
                 v => (FiscalTypeEnum)Enum.Parse(typeof(FiscalTypeEnum), v))
@@ -26,15 +26,15 @@ namespace Infrastructure.Persistence.Configurations
                  .IsRequired()
                  .HasMaxLength(9);
 
-            builder.Property(x => x.Name)
+            builder.Property(x => x.StoreName)
                 .HasConversion<string>()
                 .HasMaxLength(50);
 
-            builder.Property(x => x.Address.Id)
+            builder.Property(x => x.StoreAddress.Id)
                 .HasConversion<string>()
                 .HasMaxLength(9);
 
-            builder.OwnsOne(a => a.Address, addressbuilder =>
+            builder.OwnsOne(a => a.StoreAddress, addressbuilder =>
             {
                 addressbuilder.HasKey(s => s.Id);
                 addressbuilder.Property(s => s.Id).HasConversion<string>();
@@ -49,7 +49,7 @@ namespace Infrastructure.Persistence.Configurations
 
             });
 
-            builder.Property(x => x.Phone)
+            builder.Property(x => x.StorePhone)
                 .HasConversion<string>()
                 .HasMaxLength(9);
 

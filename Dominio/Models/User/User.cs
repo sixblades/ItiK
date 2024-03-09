@@ -12,8 +12,6 @@ namespace Domain.Models.User
         public Name Name { get; private set; }
         public Address Address { get; private set; }
         public PhoneNumber Phone { get; private set; }
-        public List<Ticket>? Tickets { get; private set; }
-
 
         public User() { }
 

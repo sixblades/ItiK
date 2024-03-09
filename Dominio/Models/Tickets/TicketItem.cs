@@ -7,13 +7,11 @@ namespace Domain.Models.Tickets
     public class TicketItem : AggregateRoot
     {
         public Guid ItemId { get; }
+        public Guid TicketId { get; }
         public Description Description { get; private set; }
         public decimal Price { get; private set; }
 
-#pragma warning disable CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
         public TicketItem() { }
-#pragma warning restore CS8618 // Un campo que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de declararlo como que admite un valor NULL.
-
         // Constructor para la creación de un nuevo objeto TicketItem
         private TicketItem(Description description, decimal price)
         {
